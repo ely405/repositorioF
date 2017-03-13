@@ -38,10 +38,10 @@ document.getElementById("btnPublicar").addEventListener("click", function(){
 
 
 var writePost = document.getElementById("publicacion");
-var containsAllPost = document.getElementById("divPintAllPost");
+var containsAllPost = document.getElementById("divPrintAllPost");
 var arrPublic = [];
 var arrFriends = [];
-//arrPublicaciones = new Array(writePost.value);
+var arrPublicaciones = [];
 
 //var containsAPost;
 
@@ -64,6 +64,7 @@ function createPost(){
     event.preventDefault();
     //alert("hola");
     containsAllPost.removeChild(containsAPost);
+    arrPublicaciones -= textParr.value;
   });
 
   /*Creando botón Editar*/
@@ -80,8 +81,9 @@ function createPost(){
   containsAPost.appendChild(btnEdit);
   containsAllPost.appendChild(containsAPost);
 
-  return arrPublicaciones = new Array(writePost.value);
-
+  arrPublicaciones += textParr.value;
+  return arrPublicaciones.split("+");
+//sconsole.log(arrPublicaciones);
 
   /*Seleccionando la privacidad*/
 
