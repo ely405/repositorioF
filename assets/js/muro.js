@@ -64,7 +64,7 @@ function createPost(){
     event.preventDefault();
     //alert("hola");
     containsAllPost.removeChild(containsAPost);
-    arrPublicaciones -= textParr.value;
+    arrPublicaciones.pop(textParr);
   });
 
   /*Creando botón Editar*/
@@ -81,11 +81,25 @@ function createPost(){
   containsAPost.appendChild(btnEdit);
   containsAllPost.appendChild(containsAPost);
 
-  arrPublicaciones += textParr.value;
-  return arrPublicaciones.split("+");
-//sconsole.log(arrPublicaciones);
+  /*agregando al Array de todas las publicaciones*/
+  arrPublicaciones.push(textParr);
+  /*agrega según la selección de la privacidad*/
+  var selectingPrivacy = document.getElementById("selectPrivacy");
+  (selectingPrivacy.value == "amigos") ? arrFriends.push(textParr): arrPublic.push(textParr);
 
-  /*Seleccionando la privacidad*/
-
+  document.getElementById("btnFriends").addEventListener("click", function(){
+    
+  });
 }
 //console.log(arrPublicaciones);
+
+var selectingPrivacy = document.getElementById("selectPrivacy");
+console.log(selectingPrivacy);
+console.log(selectingPrivacy.value);
+
+function printingListPost(){
+  /*imprime lista de publicaciones segun privacidad*/
+  var listPublic = document.getElementById("btnPublico");
+  var listFriends = document.getElementById("btnFriends");
+
+}
