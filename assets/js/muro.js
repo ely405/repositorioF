@@ -1,105 +1,41 @@
-/*function createPost() {
-  alert("hola");
-
+window.addEventListener("load",function(){
   var writePost = document.getElementById("publicacion");
-  var printAllPost = document.getElementById("divPrintAllPost");
-  var printPost = document.createElement('DIV');
-  var parrafo = document.createElement('p');
-  var eliminar = document.createElement('BUTTON');
+  var containsAllPost = document.getElementById("divPrintAllPost");
 
-  eliminar.innerHTML = "Eliminar"
-  //texto.innerHTML = writePost.value;
-  //var elim = document.getElementById("a");
-  eliminar.addEventListener('click',function(e) {
-    e.preventDefault();
-    var postParent = e.target.parent; // Devuelve el padre
-  });
+  function CreatingPost(){
+    this.containsAllPost=[];
 
-  var printPosts = printPost.appendChild(parrafo);
-  printPost.appendChild(eliminar);
-  var printingPosts = document.printAllPost.appendChild(printPosts);
-  //eliminar.appendChild(elim);
+    this.countPost = 0;
 
-  if (writePost.value != "") {
-    var publica = document.createTextNode("eli");
-    texto.appendChild(publica);
-  }
+    this.createAPost =  function(){
+                          /*creando e párrafo*/
+                          var paragraph = document.createElement("P");
+                          var textParagraph = document.createTextNode(writePost.value);
+                          paragraph.appendChild(textParagraph);
+                          /*creando botón Eliminar*/
+                          var btnRemove = document.createElement("BUTTON");
+                          var btnRemoveName = document.createTextNode("Eliminar");
+                          btnRemove.appendChild(btnRemoveName);
+                          btnRemove.setAttribute("name", "btnDelete");
+                          /*creando botón Editar*/
+                          var btnEdit = document.createElement("BUTTON");
+                          var btnEditName = document.createTextNode("Editar");
+                          btnEdit.appendChild(btnEditName);
+                          btnEdit.setAttribute("name", "btnEditPost");
+                          /*creando el contenedor de cada post*/
+                          var containsAPost = document.createElement("FIELDSET");
+                          containsAPost.appendChild(paragraph);
+                          containsAPost.appendChild(btnRemove);
+                          containsAPost.appendChild(btnEdit);
+                          containsAllPost.appendChild(containsAPost);
 
-  //return printingPosts;
-}
-*/
-
-
-//var resultado = document.getElementById('divPrintAllPost');
-//resultado.appendChild(createPost("gian"));
-document.getElementById("btnPublicar").addEventListener("click", function(){
-  createPost();
-});
+                          }
 
 
-var writePost = document.getElementById("publicacion");
-var containsAllPost = document.getElementById("divPrintAllPost");
-var arrPublic = [];
-var arrFriends = [];
-var arrPublicaciones = [];
 
-//var containsAPost;
+var printPostCreated = new CreatingPost();
 
-function createPost(){
-//  var printAllPost = document.getElementById("divPrintAllPost");
-  /*creando el párrafo*/
-  var parrafo = document.createElement("P");
-  var textParr = document.createTextNode(writePost.value);
-  parrafo.appendChild(textParr);
-  //document.body.appendChild(parrafo);
-
-  /*Creando el botón Eliminar*/
-  var btnDelete = document.createElement("BUTTON");
-  var btnDeleteName = document.createTextNode("Eliminar");
-  btnDelete.appendChild(btnDeleteName);
-  //document.body.appendChild(btnDelete);
-
-  /*Funcionalidad botón Eliminar*/
-  btnDelete.addEventListener("click", function(event){
-    event.preventDefault();
-    //alert("hola");
-    containsAllPost.removeChild(containsAPost);
-    arrPublicaciones.pop(textParr);
-  });
-
-  /*Creando botón Editar*/
-  var btnEdit = document.createElement("BUTTON");
-  var btnEditName = document.createTextNode("Editar");
-  btnEdit.appendChild(btnEditName);
-
-  /*Funcionalidad del botón Editar*/
-
-  /*Creando el contenedor de cada post*/
-  var containsAPost = document.createElement("FIELDSET");
-  containsAPost.appendChild(parrafo);
-  containsAPost.appendChild(btnDelete);
-  containsAPost.appendChild(btnEdit);
-  containsAllPost.appendChild(containsAPost);
-
-  /*agregando al Array de todas las publicaciones*/
-  arrPublicaciones.push(textParr);
-  /*agrega según la selección de la privacidad*/
-  var selectingPrivacy = document.getElementById("selectPrivacy");
-  (selectingPrivacy.value == "amigos") ? arrFriends.push(textParr): arrPublic.push(textParr);
-
-  document.getElementById("btnFriends").addEventListener("click", function(){
-    
-  });
-}
-//console.log(arrPublicaciones);
-
-var selectingPrivacy = document.getElementById("selectPrivacy");
-console.log(selectingPrivacy);
-console.log(selectingPrivacy.value);
-
-function printingListPost(){
-  /*imprime lista de publicaciones segun privacidad*/
-  var listPublic = document.getElementById("btnPublico");
-  var listFriends = document.getElementById("btnFriends");
-
+document.getElementById("btnPublicar").addEventListener("click", function(event){
+  event.preventDefault();
+  printPostCreated.containsAPost();
 }
